@@ -1,23 +1,26 @@
-"""Simple sentiment analysis with emotion history tracking."""
+from transformers import AutoTokenizer 
+from transformers import AutoModelForSequenceClassification
+from scipy.special import softmax 
 
-from transformers import pipeline
-
-MODEL = "siebert/sentiment-roberta-large-english"
-
+MODEL = f"cardiffnlp/twitter-roberta-base-sentiment"
 
 class SentimentAnalysis:
-    """Classifies text sentiment and tracks label history over time."""
-
-    def __init__(self, model: str = MODEL):
-        self.pipeline = pipeline("sentiment-analysis", model=model)
-        self.history: list[str] = []
-
-    def classify(self, text: str | list[str]) -> list[dict]:
-        """Classify a string or list of strings, recording labels to history."""
-        results = self.pipeline(text)
-        if isinstance(results, dict):
-            results = [results]
-            self.emotion_history(results)
-        return results
-
-    def emotion_history(self)
+    def __init__(self):
+        self.MODEL = MODEL
+        self.tokenizer = AutoTokenizer.from_pretrained(self.MODEL)
+        self.model = AutoModelForSequenceClassification.from_pretrained(self.MODEL)
+        self.text = None 
+    def user_text(self, text: str):
+        self.text = text
+        self._encode_text(text)
+    def _encode_text(self, text: str):
+        encode_text = self.tokenizer(text, return_tensors='pt') 
+        output = self.model(**encode_text)
+        scores = output[0][0].detach().numpy()
+        scores = softmax(scores)
+        scores_dict = {
+            'negative' : scores[0],
+            'neutral' : scores[1],
+            'positive' : scores[2]
+        }
+        print(scores_dict)
