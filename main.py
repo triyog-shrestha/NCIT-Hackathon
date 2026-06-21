@@ -11,7 +11,7 @@ Usage:
 
 Endpoints:
   GET  /api/characters
-      -> {"characters": [{id, name, tagline, color, avatarInitial, description}, ...]}
+      -> {"characters": [{id, name, tagline, image, avatar, color, avatarInitial, description}, ...]}
 
   POST /api/chat
       body: {"characterId": "<key in CHARACTERS>", "message": "..."}
@@ -47,12 +47,16 @@ def _get_character(character_id):
 def _character_card(character_id, meta):
     name = meta.get("name", character_id)
     prompt = meta.get("prompt", "")
-    tagline = next((line.strip() for line in prompt.splitlines() if line.strip()), "")
+    tagline = meta.get("tagline") or next(
+        (line.strip() for line in prompt.splitlines() if line.strip()), ""
+    )
     color = "#" + format(abs(hash(character_id)) % (256 ** 3), "06x")
     return {
         "id": character_id,
         "name": name,
         "tagline": tagline,
+        "image": meta.get("image"),
+        "avatar": meta.get("avatar"),
         "color": color,
         "avatarInitial": name[0].upper() if name else character_id[:1].upper(),
         "description": prompt.strip()[:240],

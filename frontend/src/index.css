@@ -1,22 +1,45 @@
 :root {
-  --bg: #0e0e10;
-  --surface: #18181b;
-  --surface-raised: #27272a;
-  --border: rgba(255, 255, 255, 0.08);
-  --border-hover: #9c7bff;
-  --text: #ececec;
-  --text-muted: rgba(236, 236, 236, 0.6);
-  --text-faint: rgba(236, 236, 236, 0.4);
-  --accent: #9c7bff;
-  --accent-dim: rgba(156, 123, 255, 0.18);
-  --negative: #e8748a;
-  --positive: #7bd3a0;
+  /* Color Hunt palette — https://colorhunt.co/palette/e3fdfdcbf1f5a6e3e971c9ce */
+  --palette-100: #e3fdfd;
+  --palette-200: #cbf1f5;
+  --palette-300: #a6e3e9;
+  --palette-400: #71c9ce;
 
-  --font-display: 'Fraunces', serif;
-  --font-body: 'Montserrat', sans-serif;
+  /* Core palette */
+  --primary: #71c9ce;
+  --secondary: #a6e3e9;
+  --accent: #cbf1f5;
+  --bg: #e3fdfd;
+  --text: #334155;
+
+  /* Extended palette */
+  --white: #ffffff;
+  --dark-gray: #1e293b;
+  --primary-hover: #5eb5ba;
+  --secondary-light: rgba(166, 227, 233, 0.35);
+  --accent-light: rgba(203, 241, 245, 0.55);
+  --primary-light: rgba(113, 201, 206, 0.18);
+
+  /* Semantic tokens */
+  --surface: var(--white);
+  --surface-raised: var(--palette-200);
+  --surface-soft: var(--secondary-light);
+  --border: rgba(51, 65, 85, 0.1);
+  --border-hover: var(--primary);
+  --text-muted: rgba(51, 65, 85, 0.68);
+  --text-faint: rgba(51, 65, 85, 0.45);
+  --accent-dim: rgba(113, 201, 206, 0.2);
+  --accent-green-dim: rgba(166, 227, 233, 0.3);
+  --negative: #e07a5f;
+  --positive: var(--primary);
+
+  --font-display: 'Manrope', sans-serif;
+  --font-body: 'Inter', sans-serif;
 
   --radius-card: 18px;
   --radius-pill: 100px;
+  --shadow-soft: 0 8px 24px rgba(45, 55, 72, 0.08);
+  --shadow-card: 0 4px 14px rgba(45, 55, 72, 0.06);
 }
 
 * {
@@ -41,6 +64,24 @@ button {
   font-family: inherit;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
 ::selection {
   background: var(--accent-dim);
 }
@@ -58,6 +99,6 @@ a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--primary);
   outline-offset: 2px;
 }

@@ -1,21 +1,11 @@
-// characterArt.js
-//
-// main.py's /api/characters endpoint derives tagline/color/avatarInitial
-// from the raw system prompt — it doesn't expose the `image`/`avatar`/
-// `tagline` fields that live in the Python characters.py. Rather than
-// changing the backend, we keep a small local lookup keyed by character id
-// so the grid can still show real artwork. If a character is added on the
-// backend but missing here, the UI falls back gracefully to an initial.
-//
-// If you want this to come from the server instead, the cleanest fix is
-// adding those three fields to _character_card() in main.py and removing
-// this file.
+// Fallback artwork keyed by character id — mirrors characters.py when the API
+// is unavailable. Prefer image/avatar/tagline from /api/characters at runtime.
 
 export const CHARACTER_ART = {
   miku: {
     tagline: 'Gentle encouragement and a soft place to land.',
     image:
-      "https://preview.redd.it/hatsune-miku-by-yutttang-v0-y7yogy2y12vg1.jpeg?width=640&crop=smart&auto=webp&s=2fbc92642837bca9682430974bbb3e893a1a9953",
+      'https://preview.redd.it/hatsune-miku-by-yutttang-v0-y7yogy2y12vg1.jpeg?width=640&crop=smart&auto=webp&s=2fbc92642837bca9682430974bbb3e893a1a9953',
     avatar: 'https://i.pinimg.com/736x/e7/27/89/e727894df2d327f2605cc8797fc8f4a1.jpg',
   },
   gojo: {
@@ -31,7 +21,7 @@ export const CHARACTER_ART = {
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv2TjMez1ilE52GWuCYk-VmFrmjoU_qCjo2KOEg0WHIBD052pMyZ_yfOiA&s=10',
   },
   luffy: {
-    tagline: "Loud, loyal, refuses to let you give up.",
+    tagline: 'Loud, loyal, refuses to let you give up.',
     image:
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJE6xOQuW032-JgEo19_d1g2EhaPuKteOS3wUZNfAOp7ZEX5ZjBYCNa_U&s=10',
     avatar:

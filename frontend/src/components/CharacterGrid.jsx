@@ -2,8 +2,19 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext.jsx'
 import { CHARACTER_ART } from '../characterArt.js'
 
+function resolveCharacterArt(character) {
+  const fallback = CHARACTER_ART[character.id] || {}
+  const apiTagline =
+    character.tagline && !character.tagline.startsWith('You are') ? character.tagline : null
+  return {
+    image: character.image || fallback.image,
+    avatar: character.avatar || fallback.avatar || character.image || fallback.image,
+    tagline: apiTagline || fallback.tagline,
+  }
+}
+
 function CharacterCard({ character, onSelect }) {
-  const art = CHARACTER_ART[character.id] || {}
+  const art = resolveCharacterArt(character)
   const initial = (character.name?.[0] || character.id[0] || '?').toUpperCase()
 
   return (
@@ -14,15 +25,15 @@ function CharacterCard({ character, onSelect }) {
       />
       <div className="char-card__body">
         <div className="char-card__avatar">
-          {art.avatar || art.image ? (
-            <img src={art.avatar || art.image} alt="" />
+          {art.avatar ? (
+            <img src={art.avatar} alt="" />
           ) : (
             initial
           )}
         </div>
         <p className="char-card__name">{character.name}</p>
         <p className="char-card__tagline">
-          {art.tagline || character.tagline || 'Tap to start a conversation'}
+          {art.tagline || 'Tap to start a conversation'}
         </p>
         <span className="char-card__cta">Start chat →</span>
       </div>
@@ -55,7 +66,7 @@ export default function CharacterGrid({ characters, loading, error, onSelect, on
       <header className="grid-screen__header">
         <div>
           <p className="eyebrow">who do you want to talk to today?</p>
-          <h1 className="grid-screen__title">Choose a voice</h1>
+          <h1 className="grid-screen__title">Come hang out with your companion</h1>
         </div>
         <div className="grid-screen__user">
           {user?.username && <span className="grid-screen__username">Hi, {user.username}</span>}

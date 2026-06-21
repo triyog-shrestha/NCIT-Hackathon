@@ -1,0 +1,55 @@
+{
+  "topCompanionIds": ["miku", "gojo", "luffy"],
+  "sliderSlides": [
+    {
+      "type": "model",
+      "label": "Model",
+      "title": "Llama 3 — conversational companion",
+      "description": "Warm, natural dialogue tuned for emotional support and everyday check-ins."
+    },
+    {
+      "type": "model",
+      "label": "Model",
+      "title": "Mistral — fast & focused replies",
+      "description": "Quick, clear responses when you want practical guidance without the wait."
+    },
+    {
+      "type": "model",
+      "label": "Model",
+      "title": "Phi-3 — lightweight study partner",
+      "description": "Efficient tutoring across subjects with concise explanations and minimal errors."
+    },
+    {
+      "type": "value",
+      "label": "Core value",
+      "title": "Your wellbeing comes first",
+      "description": "Every companion is designed to listen without judgment and meet you where you are."
+    },
+    {
+      "type": "value",
+      "label": "Core value",
+      "title": "Safe space, always",
+      "description": "We believe mental health support should feel approachable — not clinical or intimidating."
+    },
+    {
+      "type": "value",
+      "label": "Core value",
+      "title": "Growth at your pace",
+      "description": "Whether you need a laugh, a study session, or a quiet moment, you set the tone."
+    }
+  ],
+  "feedback": [
+    {
+      "quote": "I didn't expect an AI chat to feel this calming. Miku helped me unwind after a rough exam week.",
+      "author": "Student, year 2"
+    },
+    {
+      "quote": "No sign-up forms, no email — I just picked a username and started talking. That mattered to me.",
+      "author": "Anonymous user"
+    },
+    {
+      "quote": "Used Gojo to break down chemistry concepts before my test. Clear explanations, almost no mistakes.",
+      "author": "High school student"
+    }
+  ]
+}
