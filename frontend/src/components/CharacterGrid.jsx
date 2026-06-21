@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext.jsx'
 import { CHARACTER_ART } from '../characterArt.js'
 
 function CharacterCard({ character, onSelect }) {
@@ -40,10 +42,28 @@ function ComingSoonCard() {
 }
 
 export default function CharacterGrid({ characters, loading, error, onSelect, onRetry }) {
+  const navigate = useNavigate()
+  const { user, logout } = useAuth()
+
+  function handleLogout() {
+    logout()
+    navigate('/login')
+  }
+
   return (
     <div className="grid-screen">
-      <p className="eyebrow">who do you want to talk to today?</p>
-      <h1 className="grid-screen__title">Choose a voice</h1>
+      <header className="grid-screen__header">
+        <div>
+          <p className="eyebrow">who do you want to talk to today?</p>
+          <h1 className="grid-screen__title">Choose a voice</h1>
+        </div>
+        <div className="grid-screen__user">
+          {user?.username && <span className="grid-screen__username">Hi, {user.username}</span>}
+          <button className="btn-pill btn-pill--ghost" type="button" onClick={handleLogout}>
+            Sign out
+          </button>
+        </div>
+      </header>
 
       {loading && (
         <div className="grid-screen__status">
